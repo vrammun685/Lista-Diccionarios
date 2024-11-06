@@ -1,0 +1,1 @@
+#Cargamos de una lista de diccionarios cada dicionario tiene que tener 3 claves nombre artista genero
