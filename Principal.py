@@ -13,10 +13,36 @@ def cargar_canciones(archivo):
     return list
 
 
-def añadir_canciones(list,nombre,artista,genero):
+def añadir_canciones(nombre,artista,genero):
     #comprobar que esta
-    for cancion in list:
-        print(cancion.values())
+    esta=False
+    for cancion in playlist:
+        if cancion["nombre"]!=nombre or cancion["artista"]!=artista:
+            esta=True
+        
+    if esta==True:
+        nuevaCancion={}
+        nuevaCancion["nombre"]=nombre
+        nuevaCancion["artista"]=artista
+        nuevaCancion["genero"]=genero
+        playlist.append(nuevaCancion)
+        print("La cancion se ha añadido")
+    else:
+        print("La cancion ya está añadida")
+
+def eliminar_canciones(nombre,artista):
+    eliminado=False
+    for cancion in playlist:
+        if cancion["nombre"]==nombre and cancion["artista"]==artista:
+            playlist.remove(cancion)
+            eliminado=True
+    
+    if eliminado==True:
+        print("Se ha eliminado la canción")
+    else:
+        print("No está la canción")
 
 playlist=cargar_canciones("playlist.txt")
-añadir_canciones(playlist,"1 Enero","JC Reyes","trap")
+añadir_canciones("1 Enero","JC Reyes","trap")
+eliminar_canciones("Imagine","John Lennon")
+print(playlist)
