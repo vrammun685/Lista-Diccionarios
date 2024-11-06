@@ -5,7 +5,7 @@ def cargar_canciones(archivo):
     with open(archivo,"r") as fichero:
         for linea in fichero:
             cancion={}
-            nombre, artista, genero=linea.strip().split(" - ")
+            nombre, artista, genero=linea.strip().split("  -  ")
             cancion["nombre"]=nombre
             cancion["artista"]=artista
             cancion["genero"]=genero
@@ -33,7 +33,7 @@ def añadir_canciones(nombre,artista,genero):
 def eliminar_canciones(nombre,artista):
     eliminado=False
     for cancion in playlist:
-        if cancion["nombre"]==nombre and cancion["artista"]==artista:
+        if cancion["nombre"]==nombre:
             playlist.remove(cancion)
             eliminado=True
     
@@ -44,5 +44,5 @@ def eliminar_canciones(nombre,artista):
 
 playlist=cargar_canciones("playlist.txt")
 añadir_canciones("1 Enero","JC Reyes","trap")
-eliminar_canciones("Imagine","John Lennon")
+eliminar_canciones("1 Enero","JC Reyes")
 print(playlist)
