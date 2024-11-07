@@ -2,18 +2,21 @@
 
 def cargar_canciones(archivo):
     list=[]
-    with open(archivo,"r") as fichero:
-        for linea in fichero:
-            cancion={}
-            valores=linea.strip().split("  -  ")
-            if (len(valores) ==3):
-                nombre, artista, genero = valores
-                cancion["nombre"]=nombre
-                cancion["artista"]=artista
-                cancion["genero"]=genero
-                list.append(cancion)
-            else:
-                print("El formato tiene un numero de elementos erroneos\nTiene que tener 3 valores")
+    try:
+        with open(archivo,"r") as fichero:
+            for linea in fichero:
+                cancion={}
+                valores=linea.strip().split("  -  ")
+                if (len(valores) ==3):
+                    nombre, artista, genero = valores
+                    cancion["nombre"]=nombre
+                    cancion["artista"]=artista
+                    cancion["genero"]=genero
+                    list.append(cancion)
+                else:
+                    print("El formato tiene un numero de elementos erroneos\nTiene que tener 3 valores")
+    except FileNotFoundError:
+        print("archivo no encontrado")
     return list
 
 
@@ -52,9 +55,12 @@ def eliminar_canciones(nombre,artista):
         print("No está la canción")
 
 def guardar_datos(archivo):
-    with open(archivo, "w") as fichero:
-        for cancion in playlist:
-            fichero.write(cancion["nombre"]+"  -  "+cancion["artista"]+"  -  "+cancion["genero"]+"\n")
+    try:
+        with open(archivo, "w") as fichero:
+            for cancion in playlist:
+                fichero.write(cancion["nombre"]+"  -  "+cancion["artista"]+"  -  "+cancion["genero"]+"\n")
+    except FileNotFoundError:
+        print("archivo no encontrado")
 
 playlist=cargar_canciones("playlist.txt")
 añadir_canciones("1 Enero","JC Reyes","trap")
