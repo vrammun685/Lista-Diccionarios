@@ -5,11 +5,15 @@ def cargar_canciones(archivo):
     with open(archivo,"r") as fichero:
         for linea in fichero:
             cancion={}
-            nombre, artista, genero=linea.strip().split("  -  ")
-            cancion["nombre"]=nombre
-            cancion["artista"]=artista
-            cancion["genero"]=genero
-            list.append(cancion)
+            valores=linea.strip().split("  -  ")
+            if (len(valores) ==3):
+                nombre, artista, genero = valores
+                cancion["nombre"]=nombre
+                cancion["artista"]=artista
+                cancion["genero"]=genero
+                list.append(cancion)
+            else:
+                print("El formato tiene un numero de elementos erroneos\nTiene que tener 3 valores")
     return list
 
 
@@ -29,7 +33,8 @@ def añadir_canciones(nombre,artista,genero):
         print("La cancion se ha añadido")
     else:
         print("La cancion ya está añadida")
-
+def buscar_cancion():
+    
 def eliminar_canciones(nombre,artista):
     eliminado=False
     for cancion in playlist:
