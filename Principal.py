@@ -33,8 +33,12 @@ def añadir_canciones(nombre,artista,genero):
         print("La cancion se ha añadido")
     else:
         print("La cancion ya está añadida")
-def buscar_cancion():
-    
+
+def buscar_cancion(nombre):
+    for cancion in playlist:
+        if cancion["nombre"]==nombre:
+            print(cancion)
+
 def eliminar_canciones(nombre,artista):
     eliminado=False
     for cancion in playlist:
@@ -54,6 +58,7 @@ def guardar_datos(archivo):
 
 playlist=cargar_canciones("playlist.txt")
 añadir_canciones("1 Enero","JC Reyes","trap")
+buscar_cancion("1 Enero")
 eliminar_canciones("1 Enero","JC Reyes")
 guardar_datos("playlist.txt")
 print(playlist)
