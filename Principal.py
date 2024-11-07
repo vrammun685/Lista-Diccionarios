@@ -42,7 +42,13 @@ def eliminar_canciones(nombre,artista):
     else:
         print("No está la canción")
 
+def guardar_datos(archivo):
+    with open(archivo, "w") as fichero:
+        for cancion in playlist:
+            fichero.write(cancion["nombre"]+"  -  "+cancion["artista"]+"  -  "+cancion["genero"]+"\n")
+
 playlist=cargar_canciones("playlist.txt")
 añadir_canciones("1 Enero","JC Reyes","trap")
 eliminar_canciones("1 Enero","JC Reyes")
+guardar_datos("playlist.txt")
 print(playlist)
