@@ -1,5 +1,7 @@
 #Cargamos de una lista de diccionarios cada dicionario tiene que tener 3 claves nombre artista genero
+import json
 
+#CARGAR CANCIONES DESDE TXT
 def cargar_canciones(archivo):
     list=[]
     try:
@@ -19,7 +21,9 @@ def cargar_canciones(archivo):
         print("archivo no encontrado")
     return list
 
+#CARGAR CANCION DESDE JSON
 
+#AÑADIR CANCION
 def añadir_canciones(nombre,artista,genero):
     #comprobar que esta
     esta=False
@@ -37,11 +41,14 @@ def añadir_canciones(nombre,artista,genero):
     else:
         print("La cancion ya está añadida")
 
+#BUSCAR CANCION
 def buscar_cancion(nombre):
     for cancion in playlist:
         if cancion["nombre"]==nombre:
-            print(cancion)
+            return(cancion)
+    return ("No se ha encontrado la canción")
 
+#ELIMINAR UNA CANCION
 def eliminar_canciones(nombre,artista):
     eliminado=False
     for cancion in playlist:
@@ -54,6 +61,7 @@ def eliminar_canciones(nombre,artista):
     else:
         print("No está la canción")
 
+#GUARDAR DATOS TXT
 def guardar_datos(archivo):
     try:
         with open(archivo, "w") as fichero:
@@ -62,9 +70,10 @@ def guardar_datos(archivo):
     except FileNotFoundError:
         print("archivo no encontrado")
 
+#GUARDAR DATOS EN JSON
 playlist=cargar_canciones("playlist.txt")
 añadir_canciones("1 Enero","JC Reyes","trap")
-buscar_cancion("1 Enero")
+print(buscar_cancion("1 Enero"))
 eliminar_canciones("1 Enero","JC Reyes")
 guardar_datos("playlist.txt")
 print(playlist)
