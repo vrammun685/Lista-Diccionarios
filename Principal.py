@@ -22,7 +22,13 @@ def cargar_canciones(archivo):
     return list
 
 #CARGAR CANCION DESDE JSON
-
+def cargar_desdeJSON(archivo):
+    try:
+        with open(archivo, "r") as fichero:
+            return json.loads(fichero)
+    except FileNotFoundError:
+        print("Error, fichero no encontrado")
+        return []
 #AÑADIR CANCION
 def añadir_canciones(nombre,artista,genero):
     #comprobar que esta
@@ -71,6 +77,10 @@ def guardar_datos(archivo):
         print("archivo no encontrado")
 
 #GUARDAR DATOS EN JSON
+def guardar_JSON(archivo):
+    with open(archivo, "w") as fichero:
+        json.dump(playlist,fichero,indent=4,ensure_ascii=False)
+
 playlist=cargar_canciones("playlist.txt")
 añadir_canciones("1 Enero","JC Reyes","trap")
 print(buscar_cancion("1 Enero"))
